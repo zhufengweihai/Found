@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
@@ -12,8 +14,13 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.RequestBuilder;
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.yanzhenjie.nohttp.NoHttp;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView listView = findViewById(R.id.listView);
         ((LinearLayoutManager)listView.getLayoutManager()).setOrientation(LinearLayoutManager.HORIZONTAL);
+
         PagingScrollHelper scrollHelper = new PagingScrollHelper();
         scrollHelper.setUpRecycleView(listView);
         BeautyAdapter beautyAdapter = new BeautyAdapter();
         listView.setAdapter(beautyAdapter);
-        LiveData<PagedList<Photo>> data = new LivePagedListBuilder<>(new PhotoDataSourceFactory(),
+        LiveData<PagedList<Photo>> data = new LivePagedListBuilder<>(new PhotoDataSourceFactory(this),
                 new PagedList.Config.Builder()
                         .setPageSize(10) // 每页 10 条
                         .setEnablePlaceholders(true)
