@@ -1,8 +1,10 @@
 package com.zf.found;
 
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
@@ -10,7 +12,17 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.googlecode.flickrjandroid.Flickr;
 import com.googlecode.flickrjandroid.photos.Photo;
+import com.googlecode.flickrjandroid.photos.comments.Comment;
+import com.googlecode.flickrjandroid.photos.comments.CommentUtils;
+import com.yanzhenjie.nohttp.rest.Response;
+import com.yanzhenjie.nohttp.rest.SimpleResponseListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
 
@@ -42,13 +54,19 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BeautyViewHolder holder, int position) {
         Photo photo = getItem(position);
-        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.AT_MOST);
-        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.AT_MOST);
-        holder.itemView.measure(w, h);
-        int height = holder.itemView.getMeasuredHeight();
-        int width = holder.itemView.getMeasuredWidth();
-       // holder.photoView.setMaxHeight(height - holder.likeButton.getMeasuredHeight() - holder.commentView.getMeasuredHeight());
-        Glide.with(holder.photoView).load(photo.getMediumUrl()).into(holder.photoView);
+        Glide.with(holder.photoView).load(photo.getMediumUrl()).placeholder(R.drawable.foundme).into(holder.photoView);
+
+        Flickr.getInstance().getCommentList(photo.getId(), new SimpleResponseListener<JSONObject>() {
+            @Override
+            public void onSucceed(int what, Response<JSONObject> response) {
+                try {
+                    List<Comment> commentList = CommentUtils.createCommentList(response.get());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 }

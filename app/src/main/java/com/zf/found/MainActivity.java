@@ -31,11 +31,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView listView = findViewById(R.id.listView);
-        ((LinearLayoutManager)listView.getLayoutManager()).setOrientation(LinearLayoutManager.HORIZONTAL);
+        initPhotoList();
 
-        PagingScrollHelper scrollHelper = new PagingScrollHelper();
-        scrollHelper.setUpRecycleView(listView);
+        NoHttp.initialize(this);
+    }
+
+    private void initPhotoList() {
+        RecyclerView listView = findViewById(R.id.listView);
+        LinearLayoutManager layoutManager = new CustomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false, false);
+        listView.setLayoutManager(layoutManager);
         BeautyAdapter beautyAdapter = new BeautyAdapter();
         listView.setAdapter(beautyAdapter);
         LiveData<PagedList<Photo>> data = new LivePagedListBuilder<>(new PhotoDataSourceFactory(this),
@@ -46,25 +50,17 @@ public class MainActivity extends AppCompatActivity {
                         .build()
         ).build();
         data.observe(this, beautyAdapter::submitList);
-
-        NoHttp.initialize(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
