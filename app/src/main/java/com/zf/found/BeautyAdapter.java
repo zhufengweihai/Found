@@ -1,17 +1,12 @@
 package com.zf.found;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.googlecode.flickrjandroid.Flickr;
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.googlecode.flickrjandroid.photos.comments.Comment;
@@ -61,7 +56,7 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
             public void onSucceed(int what, Response<JSONObject> response) {
                 try {
                     List<Comment> commentList = CommentUtils.createCommentList(response.get());
-
+                    holder.commentListView.setAdapter(new CommentAdapter(commentList));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

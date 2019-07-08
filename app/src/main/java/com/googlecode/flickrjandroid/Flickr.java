@@ -62,6 +62,8 @@ public class Flickr {
         parameters.add(new Parameter("method", METHOD_GET_LIST));
         parameters.add(new Parameter("api_key", API_KEY));
         parameters.add(new Parameter("photo_id", photoId));
+        parameters.add(new Parameter("nojsoncallback", "1"));
+        parameters.add(new Parameter("format", "json"));
 
         String urlString = UrlUtilities.buildUrlString(DEFAULT_HOST, PORT, PATH, parameters);
         Request<JSONObject> request = NoHttp.createJsonObjectRequest(urlString);

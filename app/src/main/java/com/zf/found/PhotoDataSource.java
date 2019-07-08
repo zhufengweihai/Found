@@ -19,7 +19,8 @@ public class PhotoDataSource extends PageKeyedDataSource<Integer, Photo> {
         this.context = context;
         parameters = new SearchParameters();
         parameters.setTags(new String[]{"beauty girl"});
-        //parameters.setTagMode("all");
+        //parameters.setText("beauty girl");
+        parameters.setSort(SearchParameters.INTERESTINGNESS_DESC);
     }
 
     @Override

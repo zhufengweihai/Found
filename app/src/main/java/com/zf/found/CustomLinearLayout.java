@@ -1,9 +1,10 @@
 package com.zf.found;
 
 import android.content.Context;
+import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 
 class CustomLinearLayout extends ViewGroup {
 
@@ -44,4 +45,14 @@ class CustomLinearLayout extends ViewGroup {
         getChildAt(2).layout(0, getChildAt(1).getBottom(), getChildAt(2).getMeasuredWidth(), getChildAt(1).getBottom() + getChildAt(2).getMeasuredHeight());
     }
 
+    private void init(ImageView imageView, int maxWeight, int maxHeight) {
+        float scaleRate = maxWeight * 1.0f / imageView.getDrawable().getIntrinsicWidth();
+
+        Matrix matrix = new Matrix();
+        matrix.setScale(scaleRate, scaleRate);
+        if (imageView.getDrawable().getIntrinsicHeight() > maxHeight) {
+            imageView.setScaleType();
+        }
+        imageView.setImageMatrix(matrix);
+    }
 }

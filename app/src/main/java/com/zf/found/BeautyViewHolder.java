@@ -4,10 +4,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BeautyViewHolder extends RecyclerView.ViewHolder {
@@ -22,6 +21,7 @@ public class BeautyViewHolder extends RecyclerView.ViewHolder {
         likeButton = itemView.findViewById(R.id.likeButton);
         chatButton = itemView.findViewById(R.id.chatButton);
         commentListView = itemView.findViewById(R.id.commentListView);
+        commentListView.addItemDecoration(new DividerItemDecoration(parent.getContext(), LinearLayoutManager.HORIZONTAL));
         init();
     }
 

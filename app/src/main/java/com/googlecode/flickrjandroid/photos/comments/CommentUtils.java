@@ -10,8 +10,8 @@ import java.util.List;
 
 public class CommentUtils {
     public static List<Comment> createCommentList(JSONObject jsonObject) throws JSONException {
-        List<Comment> comments = new ArrayList<Comment>();
-        JSONArray commentNodes = jsonObject.optJSONArray("comment");
+        List<Comment> comments = new ArrayList<>();
+        JSONArray commentNodes = jsonObject.getJSONObject("comments").optJSONArray("comment");
         for (int i = 0; commentNodes != null && i < commentNodes.length(); i++) {
             Comment comment = new Comment();
             JSONObject commentElement = commentNodes.getJSONObject(i);
