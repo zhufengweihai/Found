@@ -22,12 +22,35 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F5F5F5"
-        android:descendantFocusability="afterDescendants"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/leftButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left|center"
+            android:background="#77000000"
+            app:srcCompat="@drawable/left" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/rightButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|center"
+            android:background="#77000000"
+            app:srcCompat="@drawable/right" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#F5F5F5"
+            android:descendantFocusability="afterDescendants" />
+    </FrameLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

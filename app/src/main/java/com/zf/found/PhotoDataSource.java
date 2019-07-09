@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
 
 import com.googlecode.flickrjandroid.Flickr;
+import com.googlecode.flickrjandroid.photos.Extras;
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.googlecode.flickrjandroid.photos.PhotoList;
 import com.googlecode.flickrjandroid.photos.SearchParameters;
@@ -18,9 +19,10 @@ public class PhotoDataSource extends PageKeyedDataSource<Integer, Photo> {
     public PhotoDataSource(Context context) {
         this.context = context;
         parameters = new SearchParameters();
-        parameters.setTags(new String[]{"beauty girl"});
-        //parameters.setText("beauty girl");
+        //parameters.setTags(new String[]{"beauty girl"});
+        parameters.setText("beauty girl");
         parameters.setSort(SearchParameters.INTERESTINGNESS_DESC);
+        parameters.setExtras(Extras.ALL_EXTRAS);
     }
 
     @Override

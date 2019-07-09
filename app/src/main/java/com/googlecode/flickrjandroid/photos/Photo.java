@@ -20,7 +20,7 @@ import com.googlecode.flickrjandroid.people.User;
 import com.googlecode.flickrjandroid.tags.Tag;
 
 public class Photo implements Serializable {
-	public static final long serialVersionUID = 12L;
+    public static final long serialVersionUID = 12L;
 
     private static final ThreadLocal<DateFormat> DATE_FORMATS = new ThreadLocal<DateFormat>() {
         protected synchronized DateFormat initialValue() {
@@ -34,7 +34,7 @@ public class Photo implements Serializable {
     private static final String THUMBNAIL_IMAGE_SUFFIX = "_t.jpg";
     private static final String MEDIUM_IMAGE_SUFFIX = ".jpg";
     private static final String LARGE_IMAGE_SUFFIX = "_b.jpg";
-	private static final String LARGE_SQUARE_IMAGE_SUFFIX = "_q.jpg";
+    private static final String LARGE_SQUARE_IMAGE_SUFFIX = "_q.jpg";
 
     private Size squareSize;
     private Size smallSize;
@@ -42,7 +42,7 @@ public class Photo implements Serializable {
     private Size mediumSize;
     private Size largeSize;
     private Size originalSize;
-	private Size largeSquareSize;
+    private Size largeSquareSize;
 
     private String id;
     private User owner;
@@ -240,7 +240,7 @@ public class Photo implements Serializable {
     public void setDateTaken(String dateTaken) {
         if (dateTaken == null || "".equals(dateTaken)) return;
         try {
-            setDateTaken(((DateFormat)DATE_FORMATS.get()).parse(dateTaken));
+            setDateTaken(((DateFormat) DATE_FORMATS.get()).parse(dateTaken));
         } catch (ParseException e) {
             // TODO: figure out what to do with this error
             e.printStackTrace();
@@ -261,7 +261,7 @@ public class Photo implements Serializable {
         setLastUpdate(new Date(unixTime * 1000L));
     }
 
-	public String getTakenGranularity() {
+    public String getTakenGranularity() {
         return takenGranularity;
     }
 
@@ -314,7 +314,6 @@ public class Photo implements Serializable {
     }
 
     /**
-     *
      * @return List of {@link PhotoUrl}
      */
     public Collection<PhotoUrl> getUrls() {
@@ -322,7 +321,6 @@ public class Photo implements Serializable {
     }
 
     /**
-     *
      * @param urls List of {@link PhotoUrl}
      */
     public void setUrls(Collection<PhotoUrl> urls) {
@@ -347,7 +345,6 @@ public class Photo implements Serializable {
     }
 
     /**
-     * 
      * @param views
      */
     public void setViews(int views) {
@@ -356,28 +353,28 @@ public class Photo implements Serializable {
 
     /**
      * Number of views. Set to -1 if the value is not available.
-     * 
+     *
      * @return Number of views
      */
     public int getViews() {
         return views;
     }
-    
+
     /**
-	 * @return the favorites
-	 */
-	public int getFavorites() {
-		return favorites;
-	}
+     * @return the favorites
+     */
+    public int getFavorites() {
+        return favorites;
+    }
 
-	/**
-	 * @param favorites the favorites to set
-	 */
-	public void setFavorites(int favorites) {
-		this.favorites = favorites;
-	}
+    /**
+     * @param favorites the favorites to set
+     */
+    public void setFavorites(int favorites) {
+        this.favorites = favorites;
+    }
 
-	/**
+    /**
      * Set the degrees of rotation. Value will be set to -1,
      * if not available.
      *
@@ -387,7 +384,7 @@ public class Photo implements Serializable {
         if (rotation != null) {
             try {
                 setRotation(Integer.parseInt(rotation));
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 setRotation(-1);
             }
         }
@@ -471,9 +468,9 @@ public class Photo implements Serializable {
     }
 
     /**
-     * @deprecated
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     public InputStream getSmallSquareAsInputStream() throws IOException {
         return getImageAsStream(SMALL_SQUARE_IMAGE_SUFFIX);
@@ -486,8 +483,8 @@ public class Photo implements Serializable {
             return squareSize.getSource();
         }
     }
-	
-	public String getLargeSquareUrl() {
+
+    public String getLargeSquareUrl() {
         if (largeSquareSize == null) {
             return getBaseImageUrl() + LARGE_SQUARE_IMAGE_SUFFIX;
         } else {
@@ -496,9 +493,9 @@ public class Photo implements Serializable {
     }
 
     /**
-     * @deprecated
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     public InputStream getThumbnailAsInputStream() throws IOException {
         return getImageAsStream(THUMBNAIL_IMAGE_SUFFIX);
@@ -514,9 +511,9 @@ public class Photo implements Serializable {
 
 
     /**
-     * @deprecated
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     public InputStream getSmallAsInputStream() throws IOException {
         return getImageAsStream(SMALL_IMAGE_SUFFIX);
@@ -532,9 +529,9 @@ public class Photo implements Serializable {
 
 
     /**
-     * @deprecated
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     public InputStream getMediumAsStream() throws IOException {
         return getImageAsStream(MEDIUM_IMAGE_SUFFIX);
@@ -550,9 +547,9 @@ public class Photo implements Serializable {
 
 
     /**
-     * @deprecated
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     public InputStream getLargeAsStream() throws IOException {
         return getImageAsStream(LARGE_IMAGE_SUFFIX);
@@ -567,15 +564,13 @@ public class Photo implements Serializable {
     }
 
 
-
-
     /**
      * Get an image as a stream. Callers must be sure to close the stream when they are done with it.
      *
-     * @deprecated
      * @param suffix The suffix
      * @return The InputStream
      * @throws IOException
+     * @deprecated
      */
     private InputStream getImageAsStream(String suffix) throws IOException {
         StringBuffer buffer = getBaseImageUrl();
@@ -584,12 +579,11 @@ public class Photo implements Serializable {
     }
 
     /**
-     * 
-     * @deprecated
      * @param suffix
      * @return InoutStream
      * @throws IOException
      * @throws FlickrException
+     * @deprecated
      */
     private InputStream getOriginalImageAsStream(String suffix) throws IOException, FlickrException {
         StringBuffer buffer = getOriginalBaseImageUrl();
@@ -618,8 +612,8 @@ public class Photo implements Serializable {
             buffer.append(getOriginalSecret());
         } else {
             throw new FlickrException(
-              "0",
-              "OriginalUrl not available because of missing originalsecret.");
+                    "0",
+                    "OriginalUrl not available because of missing originalsecret.");
         }
         return buffer;
     }
@@ -671,7 +665,8 @@ public class Photo implements Serializable {
     public void setOriginalWidth(String originalWidth) {
         try {
             setOriginalWidth(Integer.parseInt(originalWidth));
-        } catch(NumberFormatException ex) {}
+        } catch (NumberFormatException ex) {
+        }
     }
 
     public void setOriginalWidth(int originalWidth) {
@@ -685,7 +680,8 @@ public class Photo implements Serializable {
     public void setOriginalHeight(String originalHeight) {
         try {
             setOriginalHeight(Integer.parseInt(originalHeight));
-        } catch (NumberFormatException ex) {}
+        } catch (NumberFormatException ex) {
+        }
     }
 
     public void setOriginalHeight(int originalHeight) {
@@ -713,9 +709,9 @@ public class Photo implements Serializable {
                 largeSize = size;
             } else if (size.getLabel() == Size.ORIGINAL) {
                 originalSize = size;
-            } else if( size.getLabel() == Size.LARGE_SQUARE) {
-				largeSquareSize = size;
-			}
+            } else if (size.getLabel() == Size.LARGE_SQUARE) {
+                largeSquareSize = size;
+            }
         }
     }
 
@@ -732,14 +728,14 @@ public class Photo implements Serializable {
     }
 
     public Size getMediumSize() {
-        return mediumSize;
+        return mediumSize == null ? originalSize : mediumSize;
     }
 
     public Size getLargeSize() {
         return largeSize;
     }
-	
-	public Size getLargeSquareSize() {
+
+    public Size getLargeSquareSize() {
         return largeSquareSize;
     }
 
@@ -761,49 +757,48 @@ public class Photo implements Serializable {
         this.pathAlias = pathAlias;
     }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
-		return result;
-	}
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((url == null) ? 0 : url.hashCode());
+        return result;
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Photo))
-			return false;
-		Photo other = (Photo) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (url == null) {
-			if (other.url != null)
-				return false;
-		} else if (!url.equals(other.url))
-			return false;
-		return true;
-	}
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Photo))
+            return false;
+        Photo other = (Photo) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (url == null) {
+            if (other.url != null)
+                return false;
+        } else if (!url.equals(other.url))
+            return false;
+        return true;
+    }
 
-	
 
 }

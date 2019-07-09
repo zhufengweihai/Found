@@ -28,6 +28,9 @@ class CustomLinearLayout extends ViewGroup {
         measureChild(getChildAt(1), widthMeasureSpec, heightMeasureSpec);
 
         int child0MaxHeight = h - getChildAt(1).getMeasuredHeight();
+        //int photoHeight = ((ImageView) getChildAt(0)).getDrawable().getIntrinsicHeight();
+        //child0MaxHeight = child0MaxHeight > photoHeight ? photoHeight : child0MaxHeight;
+
         int child0MeasureSpec = getChildMeasureSpec(MeasureSpec.makeMeasureSpec(child0MaxHeight, MeasureSpec.AT_MOST), 0, child0MaxHeight);
         measureChild(getChildAt(0), getChildMeasureSpec(widthMeasureSpec, 0, w), child0MeasureSpec);
 
@@ -43,16 +46,5 @@ class CustomLinearLayout extends ViewGroup {
         getChildAt(0).layout(0, 0, getChildAt(0).getMeasuredWidth(), getChildAt(0).getMeasuredHeight());
         getChildAt(1).layout(0, getChildAt(0).getBottom(), getChildAt(1).getMeasuredWidth(), getChildAt(0).getBottom() + getChildAt(1).getMeasuredHeight());
         getChildAt(2).layout(0, getChildAt(1).getBottom(), getChildAt(2).getMeasuredWidth(), getChildAt(1).getBottom() + getChildAt(2).getMeasuredHeight());
-    }
-
-    private void init(ImageView imageView, int maxWeight, int maxHeight) {
-        float scaleRate = maxWeight * 1.0f / imageView.getDrawable().getIntrinsicWidth();
-
-        Matrix matrix = new Matrix();
-        matrix.setScale(scaleRate, scaleRate);
-        if (imageView.getDrawable().getIntrinsicHeight() > maxHeight) {
-            imageView.setScaleType();
-        }
-        imageView.setImageMatrix(matrix);
     }
 }

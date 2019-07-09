@@ -22,7 +22,7 @@ public class BeautyViewHolder extends RecyclerView.ViewHolder {
         chatButton = itemView.findViewById(R.id.chatButton);
         commentListView = itemView.findViewById(R.id.commentListView);
         commentListView.addItemDecoration(new DividerItemDecoration(parent.getContext(), LinearLayoutManager.HORIZONTAL));
-        init();
+        //init();
     }
 
     private void init() {

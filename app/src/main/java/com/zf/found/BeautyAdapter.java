@@ -1,12 +1,20 @@
 package com.zf.found;
 
+import android.content.res.Resources;
+import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.googlecode.flickrjandroid.Flickr;
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.googlecode.flickrjandroid.photos.comments.Comment;
@@ -49,7 +57,7 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BeautyViewHolder holder, int position) {
         Photo photo = getItem(position);
-        Glide.with(holder.photoView).load(photo.getMediumUrl()).placeholder(R.drawable.foundme).into(holder.photoView);
+        initPhotoView(holder, photo);
 
         Flickr.getInstance().getCommentList(photo.getId(), new SimpleResponseListener<JSONObject>() {
             @Override
@@ -64,4 +72,9 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
         });
     }
 
+    private void initPhotoView(@NonNull BeautyViewHolder holder, Photo photo) {
+        Resources resources = holder.photoView.getResources();
+
+        Glide.with(holder.photoView).load(photo.getMediumUrl()).placeholder(R.drawable.foundme).into(holder.photoView);
+    }
 }
