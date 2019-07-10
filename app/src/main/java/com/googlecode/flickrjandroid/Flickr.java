@@ -6,7 +6,6 @@ package com.googlecode.flickrjandroid;
 import com.googlecode.flickrjandroid.photos.PhotoList;
 import com.googlecode.flickrjandroid.photos.PhotoUtils;
 import com.googlecode.flickrjandroid.photos.SearchParameters;
-import com.googlecode.flickrjandroid.photos.comments.Comment;
 import com.googlecode.flickrjandroid.util.UrlUtilities;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -35,12 +34,12 @@ public class Flickr {
         return flickr;
     }
 
-    public PhotoList search(SearchParameters params, int perPage, int page) throws FlickrException, JSONException {
+    public PhotoList search(SearchParameters params, int perPage, int page) throws JSONException {
         Request<JSONObject> request = NoHttp.createJsonObjectRequest(createUrl(params, perPage, page));
         return PhotoUtils.createPhotoList(NoHttp.startRequestSync(request).get());
     }
 
-    private String createUrl(SearchParameters params, int perPage, int page) throws FlickrException {
+    private String createUrl(SearchParameters params, int perPage, int page) {
         List<Parameter> parameters = new ArrayList<Parameter>();
         parameters.add(new Parameter("method", METHOD_SEARCH));
         parameters.add(new Parameter("api_key", API_KEY));

@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
@@ -14,13 +12,8 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.ListPreloader;
-import com.bumptech.glide.RequestBuilder;
 import com.googlecode.flickrjandroid.photos.Photo;
 import com.yanzhenjie.nohttp.NoHttp;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initPhotoList() {
         RecyclerView beautyListView = findViewById(R.id.listView);
-        LinearLayoutManager layoutManager = new CustomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false, true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         beautyListView.setLayoutManager(layoutManager);
         BeautyAdapter beautyAdapter = new BeautyAdapter(beautyListView);
         beautyListView.setAdapter(beautyAdapter);

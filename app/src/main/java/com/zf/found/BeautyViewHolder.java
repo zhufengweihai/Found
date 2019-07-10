@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,16 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BeautyViewHolder extends RecyclerView.ViewHolder {
     public final ImageView photoView;
     public final ImageButton leftButton;
-    public final ImageView likeButton;
-    public final ImageView chatButton;
+    public final ImageButton rightButton;
+    public final ImageButton likeButton;
+    public final TextView likeText;
+    public final ImageButton chatButton;
+    public final TextView chatText;
+
     public final RecyclerView commentListView;
 
     public BeautyViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beauty, parent, false));
         photoView = itemView.findViewById(R.id.photoView);
         leftButton = itemView.findViewById(R.id.leftButton);
+        rightButton = itemView.findViewById(R.id.rightButton);
         likeButton = itemView.findViewById(R.id.likeButton);
+        likeText = itemView.findViewById(R.id.likeText);
         chatButton = itemView.findViewById(R.id.chatButton);
+        chatText = itemView.findViewById(R.id.chatText);
         commentListView = itemView.findViewById(R.id.commentListView);
         commentListView.addItemDecoration(new DividerItemDecoration(parent.getContext(), LinearLayoutManager.HORIZONTAL));
         //init();

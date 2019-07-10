@@ -55,6 +55,9 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
         Photo photo = getItem(position);
         Glide.with(holder.photoView).load(photo.getMediumUrl()).placeholder(R.drawable.foundme).into(holder.photoView);
 
+        holder.likeText.setText(String.valueOf(photo.getFavorites()));
+        holder.chatText.setText(String.valueOf(photo.getComments()));
+
         Flickr.getInstance().getCommentList(photo.getId(), new SimpleResponseListener<JSONObject>() {
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
@@ -69,8 +72,11 @@ public class BeautyAdapter extends PagedListAdapter<Photo, BeautyViewHolder> {
 
         holder.leftButton.setOnClickListener(v -> {
             int itemPosition = ((LinearLayoutManager) beautyListView.getLayoutManager()).findFirstVisibleItemPosition();
+            beautyListView.smoothScrollToPosition(itemPosition > 0 ? --itemPosition : 0);
+        });
+        holder.rightButton.setOnClickListener(v -> {
+            int itemPosition = ((LinearLayoutManager) beautyListView.getLayoutManager()).findFirstVisibleItemPosition();
             beautyListView.smoothScrollToPosition(++itemPosition);
         });
-
     }
 }
