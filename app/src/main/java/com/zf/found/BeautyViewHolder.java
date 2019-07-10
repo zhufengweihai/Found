@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class BeautyViewHolder extends RecyclerView.ViewHolder {
     public final ImageView photoView;
+    public final ImageButton leftButton;
     public final ImageView likeButton;
     public final ImageView chatButton;
     public final RecyclerView commentListView;
@@ -18,6 +21,7 @@ public class BeautyViewHolder extends RecyclerView.ViewHolder {
     public BeautyViewHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beauty, parent, false));
         photoView = itemView.findViewById(R.id.photoView);
+        leftButton = itemView.findViewById(R.id.leftButton);
         likeButton = itemView.findViewById(R.id.likeButton);
         chatButton = itemView.findViewById(R.id.chatButton);
         commentListView = itemView.findViewById(R.id.commentListView);

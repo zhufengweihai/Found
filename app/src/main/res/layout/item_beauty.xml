@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -12,45 +12,70 @@
             android:id="@+id/photoView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/foundme" />
+            android:src="@drawable/foundme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/actionLayout"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/leftButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#77000000"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@id/likeButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/left" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/rightButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#77000000"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toTopOf="@id/chatButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/right" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/likeButton"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_below="@id/photoView"
             android:background="#232325"
-            android:orientation="horizontal">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toStartOf="@id/chatButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photoView"
+            app:srcCompat="@drawable/star" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/likeButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/star" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/chatButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/chat" />
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/chatButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:background="#232325"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/likeButton"
+            app:layout_constraintTop_toBottomOf="@id/photoView"
+            app:srcCompat="@drawable/chat" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/actionLayout"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </RelativeLayout>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/likeButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

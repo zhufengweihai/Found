@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initPhotoList() {
-        RecyclerView listView = findViewById(R.id.listView);
-        LinearLayoutManager layoutManager = new CustomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false, false);
-        listView.setLayoutManager(layoutManager);
-        BeautyAdapter beautyAdapter = new BeautyAdapter();
-        listView.setAdapter(beautyAdapter);
+        RecyclerView beautyListView = findViewById(R.id.listView);
+        LinearLayoutManager layoutManager = new CustomLayoutManager(this, LinearLayoutManager.HORIZONTAL, false, true);
+        beautyListView.setLayoutManager(layoutManager);
+        BeautyAdapter beautyAdapter = new BeautyAdapter(beautyListView);
+        beautyListView.setAdapter(beautyAdapter);
         LiveData<PagedList<Photo>> data = new LivePagedListBuilder<>(new PhotoDataSourceFactory(this),
                 new PagedList.Config.Builder()
                         .setPageSize(10) // 每页 10 条
