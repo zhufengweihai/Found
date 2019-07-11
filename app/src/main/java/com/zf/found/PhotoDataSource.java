@@ -22,7 +22,7 @@ public class PhotoDataSource extends PageKeyedDataSource<Integer, Photo> {
         //parameters.setTags(new String[]{"beauty girl"});
         parameters.setText("beauty girl");
         parameters.setSort(SearchParameters.INTERESTINGNESS_DESC);
-        parameters.setExtras(Extras.ALL_EXTRAS);
+        //parameters.setExtras(Extras.ALL_EXTRAS);
     }
 
     @Override

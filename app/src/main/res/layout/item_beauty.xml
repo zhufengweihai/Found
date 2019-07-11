@@ -25,7 +25,7 @@
             android:layout_height="30dp"
             android:background="#77000000"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@id/likeButton"
+            app:layout_constraintBottom_toTopOf="@id/commentListView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/left" />
@@ -36,93 +36,45 @@
             android:layout_height="30dp"
             android:background="#77000000"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@id/chatButton"
+            app:layout_constraintBottom_toTopOf="@id/commentListView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/right" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/likeButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="#232325"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:scaleType="fitEnd"
-            app:layout_constraintEnd_toStartOf="@id/guideline1"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/photoView"
-            app:srcCompat="@drawable/star" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/likeText"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="#232325"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/photoView" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/chatButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="#232325"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:scaleType="fitEnd"
-            app:layout_constraintEnd_toStartOf="@id/guideline3"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/photoView"
-            app:srcCompat="@drawable/chat" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/chatText"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:background="#232325"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/guideline3"
-            app:layout_constraintTop_toBottomOf="@id/photoView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commentListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#B5B5B5"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/likeButton" />
+            app:layout_constraintTop_toBottomOf="@id/photoView" />
+
+        <EditText
+            android:id="@+id/commentEditText"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shape_input"
+            app:layout_constraintEnd_toStartOf="@id/addButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/commentListView"
+            app:layout_constraintVertical_weight="1" />
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/send"
+            app:layout_constraintBottom_toBottomOf="@id/commentEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/commentEditText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
