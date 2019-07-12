@@ -7,13 +7,22 @@
     android:paddingEnd="10dp"
     android:paddingBottom="15dp">
 
+    <ImageView
+        android:id="@+id/portraitView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/portrait" />
+
     <TextView
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:paddingBottom="5dp"
+        android:layout_toEndOf="@id/portraitView"
         android:textColor="#224b8f"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -23,5 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nameView"
+        android:layout_toEndOf="@id/portraitView"
         android:textSize="12sp" />
 </RelativeLayout>

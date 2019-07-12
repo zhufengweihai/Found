@@ -45,10 +45,7 @@
             android:id="@+id/commentListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#B5B5B5"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:background="@drawable/bg_comment"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
@@ -58,22 +55,24 @@
             android:id="@+id/commentEditText"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:background="@drawable/shape_input"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/addButton"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/commentListView"
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintTop_toBottomOf="@id/commentListView" />
 
         <ImageButton
             android:id="@+id/addButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:background="null"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:src="@drawable/send"
-            app:layout_constraintBottom_toBottomOf="@id/commentEditText"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/commentEditText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
